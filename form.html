@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLT Feedback Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your custom CSS -->
+</head>
+<body>
+    <!-- SLT Logo in the Upper Right Corner -->
+    <div class="container-fluid position-absolute top-0 end-0 p-3">
+        <img src="slt.png" alt="SLT Logo" class="img-fluid" style="max-width: 100px;">
+    </div>
+
+    <!-- Form Container -->
+    <div class="container glass-effect">
+        <h1>SLT Customer Feedback Form</h1>
+        <form action="submit.php" method="POST" onsubmit="return validateForm()">
+            <!-- Name -->
+            <div class="mb-3">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+
+            <!-- Address -->
+            <div class="mb-3">
+                <label for="address" class="form-label">Address:</label>
+                <textarea class="form-control" id="address" name="address" rows="4" required></textarea>
+            </div>
+
+            <!-- Contact Number -->
+            <div class="mb-3">
+                <label for="contact" class="form-label">Contact Number:</label>
+                <input type="tel" class="form-control" id="contact" name="contact" required>
+                <div id="contactError" class="text-danger hidden">Mobile number already exists!</div>
+            </div>
+
+            <!-- SLT Product Usage -->
+            <div class="mb-3">
+                <label class="form-label">Do you use SLT products?</label>
+                <div class="radio-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="slt_yes" name="slt_usage" value="yes" required>
+                        <label class="form-check-label" for="slt_yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="slt_no" name="slt_usage" value="no" required>
+                        <label class="form-check-label" for="slt_no">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- If Yes, what products? -->
+<div id="slt_products" class="mb-3 hidden">
+    <label class="form-label">What SLT products do you use?</label>
+    <select class="form-control" id="products" name="products">
+        <option value="">Select an option</option>
+        <option value="4G Router">4G Router</option>
+        <option value="Fiber-Broadband">Fiber-Broadband</option>
+        <option value="Fiber-PEO TV">Fiber-PEO TV</option>
+        <option value="Fiber-Triple play">Fiber-Triple play</option>
+        <option value="Copper Connection">Copper Connection</option>
+        <option value="Other">Other</option>
+    </select>
+</div>
+
+<!-- If No, what products? -->
+<div id="other_products" class="mb-3 hidden">
+    <label class="form-label">What products do you use instead?</label>
+    <input type="text" class="form-control" id="other_products_input" name="other_products">
+</div>
+
+<!-- Connection Preference -->
+<div class="mb-3">
+    <label class="form-label">Do you hope to get any connection from SLT Telecom?</label>
+    <div class="radio-group">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" id="connection_yes" name="connection" value="yes" required>
+            <label class="form-check-label" for="connection_yes">Yes</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" id="connection_no" name="connection" value="no" required>
+            <label class="form-check-label" for="connection_no">No</label>
+        </div>
+    </div>
+</div>
+
+<!-- If Yes, what products? -->
+<div id="connection_products" class="mb-3 hidden">
+    <label class="form-label">What SLT products are you interested in?</label>
+    <select class="form-control" id="connection_products_input" name="connection_products">
+        <option value="">Select an option</option>
+        <option value="4G Router">4G Router</option>
+        <option value="Fiber-Broadband">Fiber-Broadband</option>
+        <option value="Fiber-PEO TV">Fiber-PEO TV</option>
+        <option value="Fiber-Triple play">Fiber-Triple play</option>
+        <option value="Copper Connection">Copper Connection</option>
+        <option value="Other">Other</option>
+    </select>
+</div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-custom">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        // Show/hide SLT products field
+        document.getElementById('slt_yes').addEventListener('change', function() {
+            document.getElementById('slt_products').classList.remove('hidden');
+            document.getElementById('other_products').classList.add('hidden');
+        });
+        document.getElementById('slt_no').addEventListener('change', function() {
+            document.getElementById('other_products').classList.remove('hidden');
+            document.getElementById('slt_products').classList.add('hidden');
+        });
+
+        // Show/hide connection products field
+        document.getElementById('connection_yes').addEventListener('change', function() {
+            document.getElementById('connection_products').classList.remove('hidden');
+        });
+        document.getElementById('connection_no').addEventListener('change', function() {
+            document.getElementById('connection_products').classList.add('hidden');
+        });
+
+        // Validate form before submission
+        function validateForm() {
+            const contact = document.getElementById('contact').value;
+            const contactError = document.getElementById('contactError');
+
+            // Check if mobile number already exists (AJAX call)
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'check_contact.php', false); // Synchronous request
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send('contact=' + contact);
+
+            if (xhr.responseText === 'exists') {
+                contactError.classList.remove('hidden');
+                return false; // Prevent form submission
+            } else {
+                contactError.classList.add('hidden');
+                return true; // Allow form submission
+            }
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+/* Import Bootstrap */
+@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+
+/* Custom Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevent scrolling */
+    position: relative;
+}
+
+/* Background Video */
+#bgVideo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: -1; /* Ensure it stays in the background */
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.4); /* Lower opacity for a softer look */
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    animation: slideUp 0.8s ease-in-out;
+    position: relative; /* Ensure it stays above the video */
+    z-index: 1;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #00796b; /* Teal color for heading */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    animation: fadeInDown 1s ease-in-out;
+}
+
+@keyframes fadeInDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+@keyframes fadeInUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+input[type="tel"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    color: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+input[type="tel"]:focus {
+    outline: none;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    background: #00bcd4; /* Light blue button */
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 1s ease-in-out;
+}
+
+button[type="submit"]:hover {
+    background: #0097a7; /* Darker blue on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.error-message {
+    color: #ff6b6b;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    display: block; /* Ensure the error message is displayed */
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* intl-tel-input customization */
+.iti {
+    width: 100%;
+}
+
+.iti__flag-container {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px 0 0 8px;
+    padding: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.iti__selected-flag {
+    background: transparent;
+    color: #333;
+}
+
+.iti__arrow {
+    border-top-color: #333;
+}
+
+.iti__country-list {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.iti__country {
+    color: #333;
+}
+
+.iti__country.iti__highlight {
+    background: #f0f0f0;
+}

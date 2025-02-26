@@ -1,0 +1,80 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url('bg.jpg'); /* Ensure bg.jpg is in the correct folder */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Centered Container */
+.container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.85); /* Light, semi-transparent white */
+    padding: 25px; /* Reduced padding */
+    width: 320px; /* Smaller width for a compact design */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Soft shadow effect */
+}
+
+/* Headings */
+h1 {
+    font-size: 22px;
+    color: #2c3e50; /* Darker blue-grey for a modern look */
+    font-weight: 600;
+}
+
+/* Paragraph */
+p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    width: 100%; /* Makes buttons fill the width */
+    margin: 5px 0;
+}
+
+/* Campaign Button */
+.campaign-btn {
+    background-color: #28a745; /* Green */
+    color: white;
+}
+
+/* Analysis Button */
+.analysis-btn {
+    background-color: #6b66f3; /* Purple */
+    color: white;
+}
+
+/* Button Hover Effects */
+.btn:hover {
+    opacity: 0.85;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+    .container {
+        width: 90%;
+    }
+}
